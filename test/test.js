@@ -91,7 +91,7 @@ describe('Project scoping limitations', function(){
         it('Throws an error when you attempt to delete a file outside of default scope', function(){
             assert.throws(() => {
                 rummerf(path.resolve(__dirname, './data/no-delete.js'));
-            }, /Access Error/);
+            }, /Target is outside of defined scope/);
         });
     });
 });
