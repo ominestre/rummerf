@@ -62,8 +62,8 @@ describe('Project scoping limitations', function(){
 
         it('Throws error if current working directory is root or protected', function(){
             assert.throws(() => {
-                rummerf(path.resolve(__dirname, './data/protected.js'));
-            }, /Access Error/);
+                rummerf('/');
+            }, /Root is protected/)
         });
 
         it('Throws an error when you attempt to delete a file outside of default scope', function(){
