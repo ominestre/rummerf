@@ -1,13 +1,5 @@
-function isProtected(path){
-    if(path === '/')
-        throw new Error('Root is protected');
-    
-    const fs = require('fs');
-    fs.accessSync(path, 7);
-}
-
-module.exports = (function(scope){
-    if(!scope)
+function init(scope){
+   if(!scope)
         scope = process.cwd();
     
     if(!require('path').isAbsolute(scope))
@@ -27,4 +19,18 @@ module.exports = (function(scope){
 
         isProtected(target);
     }
-})();
+}
+
+function isProtected(path){
+    if(path === '/')
+        throw new Error('Root is protected');
+    
+    const fs = require('fs');
+    fs.accessSync(path, 7);
+}
+
+module.exports = exports = (function(init){
+    return init();
+})(init);
+
+exports.init = init;
