@@ -37,6 +37,14 @@ describe('Deleting', function(){
             rummerf();
         }, /No target/);
     });
+
+    it('Throws an error if the targets path is not absolute', () => {
+        assert.throws(() => {
+            let rummerf = require('../');
+            rummerf('./foo/bar/baz');
+        }, /absolute/);
+    });
+
     const os = require('os').type();
     if(os === 'Linux' || os === 'Darwin'){
         it('Throws an error when the file is protected', () => {
