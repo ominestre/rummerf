@@ -48,6 +48,10 @@ describe('Project scoping limitations', function(){
     });
 
     describe('With defined scoping', function(){
+        xit('Throws an error when the defined scope is not an absolute path', function(){
+
+        });
+
         xit('Throws error if current working directory is root or protected', function(){
 
         });
