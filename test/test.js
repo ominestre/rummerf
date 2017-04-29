@@ -62,11 +62,12 @@ describe('Deleting', function(){
 });
 
 describe('Project scoping limitations', function(){
-    const cwd = process.cwd();
-
     describe('With defined scoping', function(){
-        xit('Throws an error when the defined scope is not an absolute path', function(){
-
+        it('Throws an error when the defined scope is not an absolute path', function(){
+            assert.throws(() => {
+                // eslint-disable-next-line
+                let rummerf = require('../').init('./foo/bar/baz/');
+            }, /Scope must be an absolute path/);
         });
 
         xit('Throws error if current working directory is root or protected', function(){
