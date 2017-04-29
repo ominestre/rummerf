@@ -37,6 +37,16 @@ describe('Deleting', function(){
             rummerf();
         }, /No target/);
     });
+    const os = require('os').type();
+    if(os === 'Linux' || os === 'Darwin'){
+        it('Throws an error when the file is protected', () => {
+            const rummerf = require('../');
+
+            assert.throws(() => {
+                rummerf(path.resolve(__dirname, './data/protected.js'));
+            }, /Access Error/);
+        });
+    }
 });
 
 describe('Project scoping limitations', function(){
