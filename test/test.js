@@ -82,11 +82,18 @@ describe('Project scoping limitations', function(){
         process.chdir(path.resolve(__dirname, './data/sandbox/'));
         const rummerf = require('../');
 
-        it('Throws error if current working directory is root or protected', function(){
-            assert.throws(() => {
-                rummerf('/');
-            }, /Root is protected/)
-        });
+        const os = require('os').type();
+        if(os === 'Linux' || os === 'Darwin'){
+            it('Throws error if current working directory is root or protected', function(done){
+                let dir = process.cwd();
+                process.chdir('/');
+                assert.throws(() => {
+                    rummerf('/');
+                }, /Root is protected/);
+                process.chdir(dir);
+                done();
+            });
+        }
 
         it('Throws an error when you attempt to delete a file outside of default scope', function(){
             assert.throws(() => {
