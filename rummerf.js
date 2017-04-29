@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function init(scope){
    if(!scope)
         scope = process.cwd();
@@ -18,6 +20,21 @@ function init(scope){
             throw new Error('Target is outside of defined scope');
 
         isProtected(target);
+
+        return new Promise((resolve, reject) => {
+            try {
+                if(fs.lstatSync(target).isDirectory()){
+                    purge(target);
+                    fs.rmdirSync(target);
+                } else {
+                    fs.unlinkSync(target);
+                }
+  
+                resolve();
+            } catch(e){
+                reject(e);
+            }
+        });
     }
 }
 
@@ -25,8 +42,21 @@ function isProtected(path){
     if(path === '/')
         throw new Error('Root is protected');
     
-    const fs = require('fs');
     fs.accessSync(path, 7);
+}
+
+function purge(path){
+    if(fs.existsSync(path)){
+        for(let file of fs.readdirSync(path)){
+            let next = `${path}/${file}`;
+            if(fs.lstatSync(next).isDirectory()){
+                purge(next);
+                fs.rmdirSync(next);
+            } else {
+                fs.unlinkSync(next);
+            }
+        }
+    }
 }
 
 module.exports = exports = (function(init){

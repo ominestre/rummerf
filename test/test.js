@@ -1,5 +1,5 @@
 const assert = require('assert');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 before(function(done){
@@ -19,20 +19,43 @@ beforeEach(() => {
 });
 
 describe('Deleting', function(){
-    xit('Deletes a single file', function(){
-    
+    beforeEach(() => {
+        fs.copySync(path.resolve(__dirname, './data/test-dummies/'), path.resolve(__dirname, './data/blast-zone/'));
     });
 
-    xit('Deletes a single depth directory', function(){
+    it('Deletes a single file', function(){
+        let rummerf = require('../');
+        rummerf(path.resolve(__dirname, './data/blast-zone/single-file.js'));
 
+        assert.ok(!fs.existsSync(
+            path.resolve(__dirname, './data/blast-zone/single-file.js')
+        ));
     });
 
-    xit('Deletes a multi depth directory', function(){
+    it('Deletes a single depth directory', function(){
+        let rummerf = require('../');
+        rummerf(path.resolve(__dirname, './data/blast-zone/dream/'));
 
+        assert.ok(!fs.existsSync(
+            path.resolve(__dirname, './data/blast-zone/dream/')
+        ));
     });
 
-    xit('Returns a promise that is resolved when the delete operation completes', function(){
+    it('Deletes a multi depth directory', function(){
+        let rummerf = require('../');
+        rummerf(path.resolve(__dirname, './data/blast-zone/dream-within-dream/'));
 
+        assert.ok(!fs.existsSync(
+            path.resolve(__dirname, './data/blast-zone/dream-within-dream/')
+        ));
+    });
+
+    it('Returns a promise that is resolved when the delete operation completes', function(done){
+        let rummerf = require('../');
+        rummerf(path.resolve(__dirname, './data/blast-zone/dream-within-dream/')).then(() => {
+            assert(true);
+            done();
+        });
     });
 
     it('Throws an error when no path is specified', () => {
@@ -75,8 +98,11 @@ describe('Project scoping limitations', function(){
             });
         });
 
-        xit('Throws an error when you attempt to delete a file outside of the defined scope', function(){
-
+        it('Throws an error when you attempt to delete a file outside of the defined scope', function(){
+            assert.throws(() => {
+                let rummerf = require('../').init(path.resolve(__dirname, './data/sandbox/'));
+                rummerf(path.resolve(__dirname, './data/no-delete.js'));
+            }, /Target is outside of defined scope/);
         });
     });
 
