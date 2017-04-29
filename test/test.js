@@ -65,13 +65,14 @@ describe('Project scoping limitations', function(){
     describe('With defined scoping', function(){
         it('Throws an error when the defined scope is not an absolute path', function(){
             assert.throws(() => {
-                // eslint-disable-next-line
-                let rummerf = require('../').init('./foo/bar/baz/');
+                require('../').init('./foo/bar/baz/');
             }, /Scope must be an absolute path/);
         });
 
-        xit('Throws error if current working directory is root or protected', function(){
-
+        it('Throws error if current working directory is root or protected', function(){
+            assert.throws(() => {
+                require('../').init('/');
+            });
         });
 
         xit('Throws an error when you attempt to delete a file outside of the defined scope', function(){
@@ -84,7 +85,7 @@ describe('Project scoping limitations', function(){
 
         const os = require('os').type();
         if(os === 'Linux' || os === 'Darwin'){
-            it('Throws error if current working directory is root or protected', function(){
+            it('Throws error if current working directory is root', function(){
                 process.chdir('/');
                 assert.throws(() => {
                     require('../');
