@@ -30,6 +30,13 @@ describe('Deleting', function(){
     xit('Returns a promise that is resolved when the delete operation completes', function(){
 
     });
+
+    it('Throws an error when no path is specified', () => {
+        assert.throws(() => {
+            let rummerf = require('../');
+            rummerf();
+        }, /No target/);
+    });
 });
 
 describe('Project scoping limitations', function(){
