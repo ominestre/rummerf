@@ -14,6 +14,10 @@ before(function(done){
     done();
 });
 
+beforeEach(() => {
+    delete require.cache[require.resolve('../')];
+});
+
 describe('Deleting', function(){
     xit('Deletes a single file', function(){
     
