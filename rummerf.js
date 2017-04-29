@@ -42,7 +42,7 @@ function isProtected(path){
     if(path === '/')
         throw new Error('Root is protected');
     
-    fs.accessSync(path, 7);
+    fs.accessSync(path, fs.constants.R_OK | fs.constants.W_OK);
 }
 
 function purge(path){
