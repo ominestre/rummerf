@@ -64,11 +64,6 @@ describe('Deleting', function(){
 describe('Project scoping limitations', function(){
     const cwd = process.cwd();
 
-    before(() => {
-        // changes current working directory into the sandbox directory
-        process.chdir(path.resolve(__dirname, './data/sandbox/'));
-    });
-
     describe('With defined scoping', function(){
         xit('Throws an error when the defined scope is not an absolute path', function(){
 
@@ -84,6 +79,7 @@ describe('Project scoping limitations', function(){
     });
 
     describe('With default scoping using current working directory', function(){
+        process.chdir(path.resolve(__dirname, './data/sandbox/'));
         const rummerf = require('../');
 
         it('Throws error if current working directory is root or protected', function(){
@@ -97,11 +93,6 @@ describe('Project scoping limitations', function(){
                 rummerf(path.resolve(__dirname, './data/no-delete.js'));
             }, /Access Error/);
         });
-    });
-
-    after(() => {
-        // restores current working directory to test process
-        process.chdir(cwd);
     });
 });
 
