@@ -10,6 +10,10 @@ describe('Deleting', function(){
     xit('Deletes a multi depth directory', function(){
 
     });
+
+    xit('Returns a promise that is resolved when the delete operation completes', function(){
+
+    });
 });
 
 describe('Project scoping limitations', function(){
