@@ -9,7 +9,7 @@ before(function(done){
     process.stdout.write('Test environment ready\n\n\n');
 
     // securing protected file for testing
-    fs.chmodSync(path.resolve(__dirname, './data/protected.js'), 444);
+    // fs.chmodSync(path.resolve(__dirname, './data/protected.js'), 444);
 
     done();
 });
@@ -74,7 +74,7 @@ describe('Deleting', function(){
 
     const os = require('os').type();
     if(os === 'Linux' || os === 'Darwin'){
-        it('Throws an error when the file is protected', () => {
+        xit('Throws an error when the file is protected', () => {
             const rummerf = require('../');
 
             assert.throws(() => {
@@ -134,5 +134,5 @@ describe('Project scoping limitations', function(){
 
 after(() => {
     // removing protection for cleanup
-    fs.chmodSync(path.resolve(__dirname, './data/protected.js'), 777);
+    // fs.chmodSync(path.resolve(__dirname, './data/protected.js'), 777);
 });
