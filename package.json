@@ -1,0 +1,11 @@
+{
+  "name": "rummerf",
+  "version": "1.0.0",
+  "description": "Rummerf is a module for performing recursive directory deletions limited to the scope of your project to prevent tragedies",
+  "main": "rummerf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ominestre",
+  "license": "ISC"
+}
