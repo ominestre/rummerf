@@ -2,7 +2,7 @@
   "name": "@ominestre/rummerf",
   "version": "1.1.0",
   "description": "Rummerf is a module for performing recursive directory deletions limited to the scope of your project to prevent tragedies",
-  "main": "rummerf.js",
+  "main": "lib/rummerf.js",
   "scripts": {
     "test": "mocha"
   },
