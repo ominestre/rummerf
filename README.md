@@ -1,6 +1,7 @@
 # rummerf
 
 [![Build Status](https://travis-ci.org/ominestre/rummerf.svg?branch=master)](https://travis-ci.org/ominestre/rummerf)
+[![Coverage Status](https://coveralls.io/repos/github/ominestre/rummerf/badge.svg?branch=master)](https://coveralls.io/github/ominestre/rummerf)
 
 Rummerf is an "rm -rf" deletion tool with set scoping.  When you initialize rummerf it either uses a path you provide or your Current Working Directory to limit the scope of deletions.  For example if my CWD is /path/foo/bar and I attempt to delete a file within /path/foo it will throw an exception.
 
