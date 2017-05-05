@@ -1,5 +1,7 @@
 # rummerf
 
+[![NPM](https://nodei.co/npm/@ominestre/rummerf.png)](https://nodei.co/npm/@ominestre/rummerf/)
+
 [![Build Status](https://travis-ci.org/ominestre/rummerf.svg?branch=master)](https://travis-ci.org/ominestre/rummerf)
 [![Coverage Status](https://coveralls.io/repos/github/ominestre/rummerf/badge.svg?branch=master)](https://coveralls.io/github/ominestre/rummerf)
 
