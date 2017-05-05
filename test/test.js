@@ -4,9 +4,7 @@ const path = require('path');
 
 before(function(done){
     this.timeout(30000);
-    process.stdout.write('Preping test sandbox for scoping tests...\n');
     require('child_process').execSync('npm install', {cwd: path.resolve(__dirname, './data/sandbox/')});
-    process.stdout.write('Test environment ready\n\n\n');
 
     // securing protected file for testing
     // fs.chmodSync(path.resolve(__dirname, './data/protected.js'), 444);
