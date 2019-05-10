@@ -1,11 +1,12 @@
 language: node_js
 
 node_js:
-  - node
-  - 6
+  - "node"
+  - "8"
 
-after_script:
-  - npm test
-  - npm run coverage
+install:
+  - "npm ci"
 
-sudo: false
+script:
+  - "npm run lint"
+  - "npm test"
